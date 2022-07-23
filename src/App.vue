@@ -1,12 +1,30 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+    <Navigator msg="Imitation_site" />
+    <div>
+      <router-view />
     </div>
-    <router-view />
+    <particles-bg type="circle" :bg="true" />
+
   </div>
 </template>
+
+
+<script lang="ts">
+import { ParticlesBg } from "particles-bg-vue";
+import Navigator from "./views/Navigator.vue";
+export default {
+  data() {
+    return {
+    };
+  },
+  components: {
+    Navigator,
+    ParticlesBg,
+  },
+
+}
+</script>
 
 <style>
 #app {
@@ -15,6 +33,10 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  height: 100vh;
+  width: 90%;
+  max-width: 1100px;
+  margin: 0 auto;
 }
 
 #nav {
@@ -30,3 +52,6 @@
   color: #42b983;
 }
 </style>
+
+
+

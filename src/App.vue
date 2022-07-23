@@ -5,25 +5,21 @@
       <router-view />
     </div>
     <particles-bg type="circle" :bg="true" />
-
   </div>
 </template>
-
 
 <script lang="ts">
 import { ParticlesBg } from "particles-bg-vue";
 import Navigator from "./views/Navigator.vue";
 export default {
   data() {
-    return {
-    };
+    return {};
   },
   components: {
     Navigator,
     ParticlesBg,
   },
-
-}
+};
 </script>
 
 <style>
@@ -60,6 +56,3 @@ export default {
   margin: 10px;
 }
 </style>
-
-
-

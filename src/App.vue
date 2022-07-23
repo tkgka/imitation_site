@@ -51,6 +51,14 @@ export default {
 #nav a.router-link-exact-active {
   color: #42b983;
 }
+
+/* bottom right */
+.card-right-down {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: 10px;
+}
 </style>
 
 

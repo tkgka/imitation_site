@@ -74,7 +74,6 @@ export default {
         doCopy() {
             this.CopyText = "Copied";
             this.$copyText(this.ImitationURL);
-            console.log(this.ImitationURL);
         },
         DeleteImitation: function () {
             //axios get ${process.env.VUE_APP_SERVER_NAME}/graphql/del/path

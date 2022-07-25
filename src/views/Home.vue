@@ -13,15 +13,17 @@
       </div>
     </div>
 
-    <ImitationLinkCard v-show="MadePath" :ImitationURL="ImitationURL" :CopyPath="CopyPath" />
-
-
+    <ImitationLinkCard
+      v-show="MadePath"
+      :ImitationURL="ImitationURL"
+      :CopyPath="CopyPath"
+    />
   </div>
 </template>
 
 <script>
 import DragNDrop from "@/views/DragNDrop.vue"; // @ is an alias to /src
-import ImitationLinkCard from "./Card.vue"
+import ImitationLinkCard from "./Card.vue";
 export default {
   components: {
     ImitationLinkCard,
@@ -39,7 +41,7 @@ export default {
   methods: {
     change(Pathval, ImitationURL) {
       this.MadePath = Pathval;
-      this.ImitationURL = `${process.env.VUE_APP_SERVER_NAME}graphql/hex/${ImitationURL}`;
+      this.ImitationURL = `${process.env.VUE_APP_SERVER_NAME}/graphql/hex/${ImitationURL}`;
       this.CopyPath = ImitationURL;
     },
   },

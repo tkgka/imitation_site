@@ -2,7 +2,10 @@
   <div id="app">
     <div class="navbar">
       <div class="flex-1">
-        <a href="https://github.com/tkgka/imitation_site" class="btn btn-ghost normal-case text-xl">
+        <a
+          href="https://github.com/tkgka/imitation_site"
+          class="btn btn-ghost normal-case text-xl"
+        >
           <img alt="Main logo" src="../assets/logo.png" class="navbar_icon" />
           <span class="text-2xl font-black dark:text-white"> {{ msg }} </span>
         </a>
@@ -28,7 +31,8 @@
           tabindex="0"
           class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 dark:text-white"
         >
-          <li><a href="/">Main</a></li>
+          <li><a href="/">File</a></li>
+          <li><a href="/url">URL</a></li>
         </ul>
       </div>
     </div>

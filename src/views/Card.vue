@@ -1,7 +1,7 @@
 <template>
   <div class="card card-side shadow-xl">
     <div class="card-body">
-      <h2 class="card-title">Upload File to Imitate response</h2>
+      <h2 class="card-title">Share Imitate response</h2>
 
       <div>
         <input

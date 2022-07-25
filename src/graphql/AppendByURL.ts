@@ -1,11 +1,7 @@
 import client from "./Apollo";
 import graphql from "graphql-tag";
 
-async function get_value(
-  tag: any[],
-  reqMethod: string,
-  URL: string
-) {
+async function get_value(tag: any[], reqMethod: string, URL: string) {
   console.log(tag, reqMethod, URL);
 
   const inputTag: string[] = [];

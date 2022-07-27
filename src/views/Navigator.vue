@@ -33,6 +33,7 @@
         >
           <li><a href="/">File</a></li>
           <li><a href="/url">URL</a></li>
+          <li><a href="https://discord.gg/vvGnvhRFuG">join Discord</a></li>
         </ul>
       </div>
     </div>

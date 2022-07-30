@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import http from "../fileUpload.ts";
+import http from "../Axios.ts";
 export default {
   data() {
     return {

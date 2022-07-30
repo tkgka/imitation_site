@@ -87,7 +87,7 @@
 
 <script>
 import VueQr from "vue-qr";
-import http from "../fileUpload";
+import http from "../Axios";
 export default {
   props: ["ImitationURL", "CopyPath"],
   components: {

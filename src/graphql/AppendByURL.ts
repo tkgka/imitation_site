@@ -1,8 +1,13 @@
 import client from "./Apollo";
 import graphql from "graphql-tag";
 
-async function get_value(reqMethod:string, resCode: number, Header: [any], ResData: string, tag: any[]) {
-
+async function get_value(
+  reqMethod: string,
+  resCode: number,
+  Header: [any],
+  ResData: string,
+  tag: any[]
+) {
   const inputTag: string[] = [];
   tag.forEach((element) => {
     inputTag.push(element.text);

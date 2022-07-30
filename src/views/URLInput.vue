@@ -42,8 +42,9 @@
 
 <script>
 import AppendByURL from "../graphql/AppendByURL";
-import Axios from 'axios';
+import Axios from "axios";
 import ImitationLinkCard from "./Card.vue";
+import reg_pattern from "../assets/reg_pattern.ts";
 export default {
   props: [],
   components: {
@@ -60,26 +61,35 @@ export default {
   },
   methods: {
     async submit() {
-      var data = {}
+      var data = {};
+
+      //eslint-disable-next-line
+      this.URL.match(reg_pattern.pattern) ? (this.URL = this.URL) : (this.URL = `https://${this.URL}`);
+
       const buf = await Axios({
         url: this.URL,
         method: this.reqMethod,
-        responseType: 'arraybuffer',
+        responseType: "arraybuffer",
         headers: [],
-        data: []
+        data: [],
       });
-      var NewResponseHeader = []
+      var NewResponseHeader = [];
 
       for (var key in buf.headers) {
         if (Array.isArray(buf.headers[key])) {
-          buf.headers[key] = buf.headers[key][0]
+          buf.headers[key] = buf.headers[key][0];
         }
-        NewResponseHeader.push({ key: key, value: buf.headers[key] })
-
+        NewResponseHeader.push({ key: key, value: buf.headers[key] });
       }
 
       this.isUploading = true;
-      AppendByURL(this.reqMethod, buf.status, NewResponseHeader, this.bufferToHex(buf.data), []).then((val) => {
+      AppendByURL(
+        this.reqMethod,
+        buf.status,
+        NewResponseHeader,
+        this.bufferToHex(buf.data),
+        []
+      ).then((val) => {
         this.CopyPath = val;
         this.ImitationURL = `${process.env.VUE_APP_SERVER_NAME}/graphql/hex/${val}`;
         this.isUploading = false;
@@ -87,9 +97,9 @@ export default {
     },
     bufferToHex(buffer) {
       return [...new Uint8Array(buffer)]
-        .map(b => b.toString(16).padStart(2, "0"))
+        .map((b) => b.toString(16).padStart(2, "0"))
         .join("");
-    }
+    },
   },
 };
 </script>

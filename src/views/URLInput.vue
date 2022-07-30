@@ -61,8 +61,7 @@ export default {
   },
   methods: {
     async submit() {
-      var data = {};
-
+      this.isUploading = true;
       //eslint-disable-next-line
       this.URL.match(reg_pattern.pattern) ? (this.URL = this.URL) : (this.URL = `https://${this.URL}`);
 
@@ -81,8 +80,6 @@ export default {
         }
         NewResponseHeader.push({ key: key, value: buf.headers[key] });
       }
-
-      this.isUploading = true;
       AppendByURL(
         this.reqMethod,
         buf.status,

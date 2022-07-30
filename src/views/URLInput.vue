@@ -4,17 +4,10 @@
       <div class="card-body">
         <h2 class="card-title mb-20">Enter URL to Imitate response</h2>
         <div>
-          <input
-            v-model="URL"
-            type="text"
-            placeholder="path"
-            class="input input-bordered input-primary w-full max-w-xl dark:text-white"
-          />
+          <input v-model="URL" type="text" placeholder="path"
+            class="input input-bordered input-primary w-full max-w-xl dark:text-white" />
           <div class="inline-block relative w-full max-w-xl mt-3.5">
-            <select
-              v-model="reqMethod"
-              class="select select-primary w-full max-w-xl dark:text-white"
-            >
+            <select v-model="reqMethod" class="select select-primary w-full max-w-xl dark:text-white">
               >
               <option>Get</option>
               <option>Post</option>
@@ -31,11 +24,7 @@
         </div>
 
         <div>
-          <button
-            v-on:click="submit"
-            :disabled="isUploading"
-            class="btn btn-primary btn-wide m-3.5"
-          >
+          <button v-on:click="submit" :disabled="isUploading" class="btn btn-primary btn-wide m-3.5">
             Go
           </button>
         </div>
@@ -47,16 +36,13 @@
         </div>
       </div>
     </div>
-    <ImitationLinkCard
-      v-if="ImitationURL.length > 0"
-      :ImitationURL="ImitationURL"
-      :CopyPath="CopyPath"
-    />
+    <ImitationLinkCard v-if="ImitationURL.length > 0" :ImitationURL="ImitationURL" :CopyPath="CopyPath" />
   </div>
 </template>
 
 <script>
 import AppendByURL from "../graphql/AppendByURL";
+import Axios from 'axios';
 import ImitationLinkCard from "./Card.vue";
 export default {
   props: [],
@@ -73,14 +59,37 @@ export default {
     };
   },
   methods: {
-    submit() {
+    async submit() {
+      var data = {}
+      const buf = await Axios({
+        url: this.URL,
+        method: this.reqMethod,
+        responseType: 'arraybuffer',
+        headers: [],
+        data: []
+      });
+      var NewResponseHeader = []
+
+      for (var key in buf.headers) {
+        if (Array.isArray(buf.headers[key])) {
+          buf.headers[key] = buf.headers[key][0]
+        }
+        NewResponseHeader.push({ key: key, value: buf.headers[key] })
+
+      }
+
       this.isUploading = true;
-      AppendByURL([], this.reqMethod, this.URL).then((val) => {
+      AppendByURL(this.reqMethod, buf.status, NewResponseHeader, this.bufferToHex(buf.data), []).then((val) => {
         this.CopyPath = val;
         this.ImitationURL = `${process.env.VUE_APP_SERVER_NAME}/graphql/hex/${val}`;
         this.isUploading = false;
       });
     },
+    bufferToHex(buffer) {
+      return [...new Uint8Array(buffer)]
+        .map(b => b.toString(16).padStart(2, "0"))
+        .join("");
+    }
   },
 };
 </script>

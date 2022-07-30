@@ -1,8 +1,7 @@
 import client from "./Apollo";
 import graphql from "graphql-tag";
 
-async function get_value(tag: any[], reqMethod: string, URL: string) {
-  console.log(tag, reqMethod, URL);
+async function get_value(reqMethod:string, resCode: number, Header: [any], ResData: string, tag: any[]) {
 
   const inputTag: string[] = [];
   tag.forEach((element) => {
@@ -17,15 +16,14 @@ async function get_value(tag: any[], reqMethod: string, URL: string) {
     `,
     variables: {
       addvalInput: {
-        tag: inputTag,
         requestMethod: reqMethod,
-        requestURL: URL,
+        responseCode: resCode,
+        responseHeader: Header,
+        responseData: ResData,
+        tag: inputTag,
       },
     },
   });
-
-  // console.log("data:", data.gql);
-  // console.log("error:", errors);
   return data.addVal;
 }
 

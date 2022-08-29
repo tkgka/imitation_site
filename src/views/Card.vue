@@ -22,7 +22,7 @@
           network="email"
           title="Shareing Imitation Site"
           :url="ImitationURL"
-          description="We're shareing Imiation Site Link"
+          description="We're shareing Imitation Site Link"
         >
           <button class="btn btn-wide m-3.5">
             <svg
